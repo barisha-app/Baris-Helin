@@ -1,436 +1,125 @@
-<!doctype html>
-<html lang="tr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="BARIŞ ❤ HELİN nikah davetiyesi. Düğün detayları, galeri ve katılım (RSVP) bilgileri.">
-    <meta name="author" content="BARIŞ ❤ HELİN">
-    <title>BARIŞ ❤ HELİN - Nikah Davetiyesi</title>
+<script>
+(function () {
+  // 1) Basit metin çeviri/değişimleri
+  const map = new Map([
+    ['Bratt Jolie', 'BARIŞ ❤ HELİN'],
+    ['Homepage', 'Ana Sayfa'],
+    ['Our Story', 'Hikayemiz'],
+    ['The Wedding', 'Düğün'],
+    ['People', 'Aile & Dostlar'],
+    ['Gallery', 'Galeri'],
+    ['Rsvp', 'Katılım / RSVP'],
+    ['Contact Us', 'İletişim'],
+    ["Hi there, You're invited", 'Davetlisiniz'],
+    ["We're getting married", 'Düğünümüz Var!'],
+    ['Save the date', 'Nikah Tarihi'],
+    ['Love Story', 'Aşk Hikayemiz'],
+    ['The Reception', 'Düğün Yemeği'],
+    ['Wedding Ceremony', 'Nikah Töreni'],
+    ['Location', 'Konum'],
+    ['Groomsmen & Bridesmaid', 'Aile & Dostlar'],
+    ['Groom Side', 'Damat Tarafı'],
+    ['Bride Side', 'Gelin Tarafı'],
+    ['The Bride', 'Gelin'],
+    ['The Groom', 'Damat'],
+    ['Best friend', 'En İyi Arkadaş'],
+    ['Sister', 'Kardeş'],
+    ['Friend', 'Arkadaş'],
+    ['Get in touch', 'İletişim']
+  ]);
 
-    <!-- CSS FILES -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-icons.css" rel="stylesheet">
-    <link href="css/magnific-popup.css" rel="stylesheet">
-    <link href="css/tooplate-wedding-lite.css" rel="stylesheet">
-  </head>
+  let html = document.body.innerHTML;
+  for (const [from, to] of map.entries()) {
+    const safe = from.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    html = html.replace(new RegExp(safe, 'g'), to);
+  }
+  document.body.innerHTML = html;
 
-  <body>
-    <section class="preloader">
-      <div class="spinner">
-        <span class="spinner-rotate">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-          </svg>
-        </span>
-      </div>
-    </section>
+  // 2) Nikah Tarihi (şu anda 1 Ocak 2026 olarak ayarladım)
+  const nikahBaslik = Array.from(document.querySelectorAll('h1,h2,h3,h4,h5'))
+    .find(el => /Nikah Tarihi/i.test(el.textContent.trim()));
+  if (nikahBaslik) {
+    // başlığın hemen sonrasındaki tarih yazısı:
+    const dateEl =
+      nikahBaslik.nextElementSibling ||
+      nikahBaslik.parentElement.querySelector('h2, h3, h4, p');
+    if (dateEl) dateEl.textContent = '1 Ocak 2026';
+  }
 
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
+  // 3) Gelin/Damat isim ve kısa metinleri
+  //   (Görseller aynı kalır)
+  const brideTitle = Array.from(document.querySelectorAll('h1,h2,h3,h4'))
+    .find(el => /Jolie\b/i.test(el.textContent.trim()));
+  if (brideTitle) {
+    brideTitle.textContent = 'Helin';
+    const role = brideTitle.nextElementSibling;
+    if (role) role.textContent = 'Gelin';
+    const p = role?.nextElementSibling || brideTitle.parentElement.querySelector('p');
+    if (p) p.textContent = 'Helin, kalbimin en güzel yeri; tanıştığımız günden beri her günümü güzelleştiriyor.';
+  }
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  const groomTitle = Array.from(document.querySelectorAll('h1,h2,h3,h4'))
+    .find(el => /\bBratt\b/i.test(el.textContent.trim()));
+  if (groomTitle) {
+    groomTitle.textContent = 'Barış';
+    const role = groomTitle.nextElementSibling;
+    if (role) role.textContent = 'Damat';
+    const p = role?.nextElementSibling || groomTitle.parentElement.querySelector('p');
+    if (p) p.textContent = 'Barış ve Helin, aynı hikâyenin iki kahramanı; birlikte büyüyor ve gülüyoruz.';
+  }
 
-        <a href="index.html" class="navbar-brand mx-auto mx-lg-0">
-          <span>BARIŞ</span>
-          <i class="bi-heart brand-icon"></i>
-          <span>HELİN</span>
-        </a>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link click-scroll" href="#section_1">Ana Sayfa</a></li>
-            <li class="nav-item"><a class="nav-link click-scroll" href="#section_2">Hikayemiz</a></li>
-            <li class="nav-item"><a class="nav-link click-scroll" href="#section_3">Düğün</a></li>
-            <li class="nav-item"><a class="nav-link click-scroll" href="#section_4">Aile &amp; Dostlar</a></li>
-            <li class="nav-item"><a class="nav-link click-scroll" href="#section_5">Galeri</a></li>
-            <li class="nav-item"><a class="nav-link click-scroll" href="#section_6">Katılım / RSVP</a></li>
-            <li class="nav-item"><a class="nav-link click-scroll" href="#section_7">İletişim</a></li>
-          </ul>
-        </div>
-
-      </div>
-    </nav>
-
-    <main>
-      <!-- HERO -->
-      <section class="hero-section d-flex" id="section_1">
-        <div class="hero-container container d-flex flex-column justify-content-end">
-          <div class="row h-100">
-            <div class="col-lg-6 col-12 my-auto">
-              <h2>👋 Merhaba, davetlisiniz</h2>
-              <h1 class="text-white hero-title mb-4">Düğünümüz Var!</h1>
-
-              <p class="text-white mb-2">
-                <i class="bi-check-circle-fill custom-icon me-1"></i>
-                Nikah törenimize davetlisiniz.
-              </p>
-              <p class="text-white">
-                <i class="bi-check-circle-fill custom-icon me-1"></i>
-                Detaylar aşağıda.
-              </p>
-
-              <a href="#section_2" class="custom-link custom-btn btn mt-4">Detayları Gör</a>
-            </div>
-
-            <div class="col-lg-3 col-12 save-the-date-wrap mt-auto ms-lg-auto">
-              <div class="save-the-date-thumb">
-                <h4 class="save-the-date-title">Nikah tarihi</h4>
-                <div class="save-the-date-body">
-                  <span class="date">14 Ekim 2024</span>
-                </div>
+  // 4) RSVP bölümünü tamamen değiştir (WhatsApp + Form + Telefon)
+  const rsvpHeading = Array.from(document.querySelectorAll('h1,h2,h3'))
+    .find(el => /Katılım|RSVP/i.test(el.textContent) || /Rsvp/i.test(el.textContent));
+  if (rsvpHeading) {
+    const section = rsvpHeading.closest('section') || rsvpHeading.parentElement;
+    if (section) {
+      section.innerHTML = `
+        <div class="container py-5">
+          <div class="row justify-content-center">
+            <div class="col-lg-9 text-center">
+              <h2 class="mb-3">Katılım / RSVP</h2>
+              <p class="lead">Katılımınızı aşağıdaki yollardan birini kullanarak bildirebilirsiniz.</p>
+              <div class="d-flex flex-wrap gap-3 justify-content-center my-4">
+                <a class="btn btn-success" href="https://wa.me/905303042950" target="_blank" rel="noopener">WhatsApp: +90 530 304 29 50</a>
+                <a class="btn btn-success" href="https://wa.me/905050202950" target="_blank" rel="noopener">WhatsApp: +90 505 020 29 50</a>
+                <a class="btn btn-primary" href="https://forms.gle/PLACEHOLDER" target="_blank" rel="noopener">Google Form</a>
+                <a class="btn btn-outline-dark" href="tel:+905303042950">Telefonla Ara</a>
               </div>
+              <small class="text-muted d-block">* Google Form linkini sonra bana ver, hemen güncellerim.</small>
             </div>
-
           </div>
-        </div>
-      </section>
+        </div>`;
+    }
+  }
 
-      <!-- HİKAYE -->
-      <section class="about-section section-padding" id="section_2">
-        <div class="container">
-          <div class="row">
+  // 5) İletişim bölümündeki adres/telefon/e-posta
+  const contactHeading = Array.from(document.querySelectorAll('h1,h2,h3'))
+    .find(el => /İletişim|Get in touch/i.test(el.textContent));
+  const contactSection = contactHeading?.closest('section') || null;
+  if (contactSection) {
+    // "Visit Us" bloğu
+    const visitH = Array.from(contactSection.querySelectorAll('h4,h5'))
+      .find(el => /Visit Us|Ziyaret/i.test(el.textContent));
+    if (visitH) {
+      const p = visitH.nextElementSibling;
+      if (p) p.innerHTML = '<a href="https://www.google.com/maps?hl=tr&gl=tr&um=1&ie=UTF-8&fb=1&sa=X&ftid=0x14cab78a7af69e57:0xa909458b4e907426" target="_blank" rel="noopener">Haritada Aç (Google Maps)</a>';
+    }
+    // "Contact Information" bloğu
+    const infoH = Array.from(contactSection.querySelectorAll('h4,h5'))
+      .find(el => /Contact Information|İletişim Bilgileri/i.test(el.textContent));
+    if (infoH) {
+      const pMail = infoH.nextElementSibling;
+      const pTel = pMail?.nextElementSibling;
+      if (pMail) pMail.innerHTML = '<a href="mailto:barisakyuz@yaani.com">barisakyuz@yaani.com</a>';
+      if (pTel)  pTel.innerHTML  = '<a href="tel:+905303042950">+90 530 304 29 50</a> / <a href="tel:+905050202950">+90 505 020 29 50</a>';
+    }
+  }
 
-            <div class="col-lg-12 col-12">
-              <div class="section-title-wrap mb-5">
-                <h2 class="section-title">Hikayemiz</h2>
-                <div class="section-title-bottom">
-                  <span class="section-title-line"></span>
-                  <i class="section-title-icon bi-heart-fill"></i>
-                  <span class="section-title-line"></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-12">
-              <div class="image-hover-thumb">
-                <img src="images/vertical-shot-beautiful-smiling-girl.jpg" class="about-image img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-12">
-              <div class="about-info-wrap d-flex flex-column">
-                <div class="about-info-title d-flex align-items-center my-3">
-                  <h4>Helin</h4>
-                  <span class="about-tag ms-2">Gelin</span>
-                </div>
-
-                <p>Hayatımıza sıcaklığı, zarafeti ve neşesiyle dokunan kişi.</p>
-
-                <div class="social-icon-wrap mt-auto">
-                  <ul class="social-icon ms-auto">
-                    <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>
-                    <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram"></a></li>
-                    <li class="social-icon-item"><a href="https://wa.me/905050202950" class="social-icon-link bi-whatsapp"></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-12">
-              <div class="image-hover-thumb">
-                <img src="images/vertical-shot-young-handsome-guy-autumn-park.jpg" class="about-image img-fluid" alt="">
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-12">
-              <div class="about-info-wrap d-flex flex-column">
-                <div class="about-info-title d-flex align-items-center my-3">
-                  <h4>Barış</h4>
-                  <span class="about-tag ms-2">Damat</span>
-                </div>
-
-                <p>Sevgiyle büyüyen hikayemizin kahramanı.</p>
-
-                <div class="social-icon-wrap mt-auto">
-                  <ul class="social-icon ms-auto">
-                    <li class="social-icon-item"><a href="#" class="social-icon-link bi-facebook"></a></li>
-                    <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram"></a></li>
-                    <li class="social-icon-item"><a href="https://wa.me/905303042950" class="social-icon-link bi-whatsapp"></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- DÜĞÜN -->
-      <section class="the-wedding-section section-bg section-padding" id="section_3">
-        <div class="container">
-          <div class="row">
-
-            <div class="col-lg-12 col-12">
-              <div class="section-title-wrap mb-5">
-                <h2 class="section-title">Düğün</h2>
-                <div class="section-title-bottom">
-                  <span class="section-title-line"></span>
-                  <i class="section-title-icon bi-heart-fill"></i>
-                  <span class="section-title-line"></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-12 d-flex flex-column mb-4 mb-lg-0 mb-md-0">
-              <div class="image-hover-thumb">
-                <img src="images/decorated-table-setting-wedding-celebration.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="section-block">
-                <h3 class="my-3">Karşılama / Yemek</h3>
-                <p class="mb-2"><i class="bi-geo-alt me-1"></i>Adres: Harita üzerindeki konum</p>
-                <p><i class="bi-clock me-1"></i>Saat: Yakında duyurulacak</p>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-12 d-flex flex-column mb-4 mb-lg-0 mb-md-0">
-              <div class="image-hover-thumb">
-                <img src="images/front-view-wedding-couple.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="section-block">
-                <h3 class="my-3">Nikah Töreni</h3>
-                <p class="mb-2"><i class="bi-geo-alt me-1"></i>Adres: Harita üzerindeki konum</p>
-                <p><i class="bi-clock me-1"></i>Saat: Yakında duyurulacak</p>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-12 d-flex flex-column">
-              <!-- Verilen konum linki ile embed -->
-              <iframe class="google-map"
-                      src="https://www.google.com/maps?hl=tr&gl=tr&um=1&ie=UTF-8&fb=1&sa=X&ftid=0x14cab78a7af69e57:0xa909458b4e907426&output=embed"
-                      width="100%" height="310" allowfullscreen="" loading="lazy"></iframe>
-
-              <div class="section-block">
-                <h3 class="my-3">Konum</h3>
-                <p class="mb-2">
-                  <i class="bi-geo-alt me-1"></i>
-                  <a href="https://www.google.com/maps?hl=tr&gl=tr&um=1&ie=UTF-8&fb=1&sa=X&ftid=0x14cab78a7af69e57:0xa909458b4e907426" target="_blank" rel="noopener">Haritayı Aç</a>
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- AİLE & DOSTLAR -->
-      <section class="people-section section-padding" id="section_4">
-        <div class="container">
-          <div class="row">
-
-            <div class="col-lg-12 col-12">
-              <div class="section-title-wrap mb-5">
-                <h2 class="section-title">Aile &amp; Dostlar</h2>
-                <div class="section-title-bottom">
-                  <span class="section-title-line"></span>
-                  <i class="section-title-icon bi-heart-fill"></i>
-                  <span class="section-title-line"></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-5 col-12 me-auto">
-              <nav>
-                <div class="nav nav-tabs flex-lg-column align-items-baseline" id="nav-tab" role="tablist">
-                  <button class="nav-link active" id="nav-groomsmen-tab" data-bs-toggle="tab" data-bs-target="#nav-groomsmen" type="button" role="tab" aria-controls="nav-groomsmen" aria-selected="true">
-                    <h3>Damat Tarafı</h3>
-                  </button>
-                  <button class="nav-link" id="nav-bridesmaid-tab" data-bs-toggle="tab" data-bs-target="#nav-bridesmaid" type="button" role="tab" aria-controls="nav-bridesmaid" aria-selected="false">
-                    <h3>Gelin Tarafı</h3>
-                  </button>
-                </div>
-              </nav>
-            </div>
-
-            <div class="col-lg-8 col-md-6 col-12">
-              <div class="tab-content" id="nav-tabContent">
-
-                <div class="tab-pane fade show active" id="nav-groomsmen" role="tabpanel" aria-labelledby="nav-groomsmen-tab">
-                  <div class="row">
-                    <div class="col-lg-6 col-12">
-                      <div class="people-thumb image-hover-thumb">
-                        <img src="images/people/attractive-laughing-guy-having-fun-smiling-happy.jpg" class="people-image img-fluid" alt="">
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                      <div class="section-block">
-                        <div class="d-flex align-items-center my-3">
-                          <h4 class="mb-0">Yakın Dost</h4>
-                          <span class="about-tag ms-2">Aile</span>
-                        </div>
-                        <p>Bu mutlu günümüzde bizimle olan herkese teşekkür ederiz.</p>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-6 col-12">
-                      <div class="people-thumb image-hover-thumb">
-                        <img src="images/people/portrait-handsome-attractive-young-man-posing.jpg" class="people-image img-fluid" alt="">
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                      <div class="section-block">
-                        <div class="d-flex align-items-center my-3">
-                          <h4 class="mb-0">Kıymetli Akraba</h4>
-                          <span class="about-tag ms-2">Aile</span>
-                        </div>
-                        <p>Varlığınızla günümüzü güzelleştiriyorsunuz.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="tab-pane fade show" id="nav-bridesmaid" role="tabpanel" aria-labelledby="nav-bridesmaid-tab">
-                  <div class="row">
-                    <div class="col-lg-6 col-12">
-                      <div class="people-thumb image-hover-thumb">
-                        <img src="images/people/lifestyle-people-emotions-casual-concept.jpg" class="people-image img-fluid" alt="">
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                      <div class="section-block">
-                        <div class="d-flex align-items-center my-3">
-                          <h4 class="mb-0">Kıymetli Arkadaş</h4>
-                          <span class="about-tag ms-2">Aile</span>
-                        </div>
-                        <p>Birlikte nice güzel anılara.</p>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-6 col-12">
-                      <div class="people-thumb image-hover-thumb">
-                        <img src="images/people/portrait-beautiful-young-woman-standing-grey-wall.jpg" class="people-image img-fluid" alt="">
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                      <div class="section-block">
-                        <div class="d-flex align-items-center my-3">
-                          <h4 class="mb-0">Değerli Misafir</h4>
-                          <span class="about-tag ms-2">Aile</span>
-                        </div>
-                        <p>Sevgiyle, birlikte.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- GALERİ -->
-      <section class="gallery-section section-bg section-padding" id="section_5">
-        <div class="container">
-          <div class="row">
-
-            <div class="col-lg-12 col-12">
-              <div class="section-title-wrap mb-5">
-                <h2 class="section-title">Galeri</h2>
-                <div class="section-title-bottom">
-                  <span class="section-title-line"></span>
-                  <i class="section-title-icon bi-heart-fill"></i>
-                  <span class="section-title-line"></span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Orijinal görseller korunuyor -->
-            <div class="col-lg-4 col-12">
-              <div class="gallery-thumb image-hover-thumb">
-                <a href="images/gallery/bearded-stylish-groom-suit-beautiful-blonde.jpg" class="popup-image">
-                  <img src="images/gallery/bearded-stylish-groom-suit-beautiful-blonde.jpg" class="gallery-image img-fluid" alt="">
-                </a>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-12 d-flex flex-column">
-              <div class="gallery-thumb gallery-thumb-small image-hover-thumb">
-                <a href="images/gallery/couple.jpg" class="popup-image">
-                  <img src="images/gallery/couple.jpg" class="gallery-image img-fluid" alt="">
-                </a>
-              </div>
-
-              <div class="gallery-thumb gallery-thumb-small image-hover-thumb">
-                <a href="images/gallery/groom-with-bride-are-knocking-glasses-with-champagne.jpg" class="popup-image">
-                  <img src="images/gallery/groom-with-bride-are-knocking-glasses-with-champagne.jpg" class="gallery-image img-fluid" alt="">
-                </a>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-12">
-              <div class="gallery-thumb image-hover-thumb">
-                <a href="images/gallery/bearded-stylish-groom-suit-beautiful-blonde.jpg" class="popup-image">
-                  <img src="images/gallery/bearded-stylish-groom-suit-beautiful-blonde.jpg" class="gallery-image img-fluid" alt="">
-                </a>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-12 d-flex flex-column">
-              <div class="gallery-thumb gallery-thumb-small image-hover-thumb">
-                <a href="images/gallery/bride-groom-having-their-wedding-with-guests-beach.jpg" class="popup-image">
-                  <img src="images/gallery/bride-groom-having-their-wedding-with-guests-beach.jpg" class="gallery-image img-fluid" alt="">
-                </a>
-              </div>
-
-              <div class="gallery-thumb gallery-thumb-small image-hover-thumb">
-                <a href="images/gallery/wedding-ceremony-place-nature-outside-summer.jpg" class="popup-image">
-                  <img src="images/gallery/wedding-ceremony-place-nature-outside-summer.jpg" class="gallery-image img-fluid" alt="">
-                </a>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-12">
-              <div class="gallery-thumb image-hover-thumb">
-                <a href="images/gallery/elegant-young-woman-fashionable.jpg" class="popup-image">
-                  <img src="images/gallery/elegant-young-woman-fashionable.jpg" class="gallery-image img-fluid" alt="">
-                </a>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-12 d-flex flex-column">
-              <div class="gallery-thumb gallery-thumb-small image-hover-thumb">
-                <a href="images/gallery/young-couple-broke-down-car-while-traveling.jpg" class="popup-image">
-                  <img src="images/gallery/young-couple-broke-down-car-while-traveling.jpg" class="gallery-image img-fluid" alt="">
-                </a>
-              </div>
-
-              <div class="gallery-thumb gallery-thumb-small image-hover-thumb">
-                <a href="images/gallery/young-couple-traveling-car-sunny-day.jpg" class="popup-image">
-                  <img src="images/gallery/young-couple-traveling-car-sunny-day.jpg" class="gallery-image img-fluid" alt="">
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- RSVP -->
-      <section class="rsvp-section section-padding" id="section_6">
-        <div class="container">
-          <div class="row">
-
-            <div class="col-lg-8 col-12 mx-auto">
-              <div class="rsvp-form-wrap">
-                <div class="section-title-wrap mb-5">
-                  <h2 class="section-title">Katılım / RSVP</h2>
-                  <div class="section-title-bottom">
-                    <span class="section-title-line"></span>
-                    <i class="section-title-icon bi-heart-fill"></i>
-                    <span class="section-title-line"></span>
-                  </div>
-                </div>
-
-                <h5 class="mb-4">Katılacak mısınız? <span class="text-muted">Lütfen bize haber verin.</span></h5>
-
-                <!-- WhatsApp & Telefon -->
-                <div class="row g-2 mb-4">
-                  <div class="col-12 col-md-6">
-                    <a class="btn btn-success w-100" href="https://wa.me/905303042950" target="_blank" rel="noopener">
-                      <i class="bi
+  // 6) Footer telif bilgisini sadeleştir (isteğe bağlı)
+  document.body.innerHTML = document.body.innerHTML.replace(
+    /Copyright © .*?Design:/,
+    '© 2025 BARIŞ ❤ HELİN · Tasarım:'
+  );
+})();
+</script>
