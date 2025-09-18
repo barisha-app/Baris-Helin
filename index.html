@@ -16,23 +16,334 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet">
 
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
-
-        <link href="css/magnific-popup.css" rel="stylesheet">
-
-        <link href="css/tooplate-wedding-lite.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
         
-<!--
-
-Tooplate 2131 Wedding Lite
-
-https://www.tooplate.com/view/2131-wedding-lite
-
-Free Bootstrap 5 HTML Template
-
--->
+        <style>
+            body {
+                font-family: 'Playfair Display', serif;
+                color: #333;
+                overflow-x: hidden;
+            }
+            
+            .amatic-font {
+                font-family: 'Amatic SC', cursive;
+                font-weight: 700;
+            }
+            
+            /* Hero Section */
+            .hero-section {
+                background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/yüzüklü.jpg') no-repeat center center;
+                background-size: cover;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                color: #fff;
+                padding: 60px 0;
+            }
+            
+            .hero-title {
+                font-size: 4rem;
+                margin-bottom: 20px;
+                color: #fff;
+            }
+            
+            @media (max-width: 768px) {
+                .hero-title {
+                    font-size: 2.5rem;
+                }
+                
+                .hero-section {
+                    text-align: center;
+                    padding: 100px 0 60px;
+                }
+            }
+            
+            /* Custom Link Button */
+            .custom-link {
+                color: #fff;
+                text-decoration: none;
+                border: 2px solid #fff;
+                padding: 12px 30px;
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            
+            .custom-link:hover {
+                background: #fff;
+                color: #333;
+            }
+            
+            /* Save The Date Section */
+            .save-the-date-wrap {
+                background: rgba(0, 0, 0, 0.7);
+                padding: 30px;
+                border-radius: 10px;
+                text-align: center;
+                margin-top: 30px;
+            }
+            
+            .save-the-date-title {
+                color: #d4af37;
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            
+            .save-the-date-body {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                color: #fff;
+            }
+            
+            /* Geri Sayım */
+            .geri-sayim {
+                margin-top: 20px;
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.15);
+                border-radius: 10px;
+                text-align: center;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+            
+            .geri-sayim .zaman {
+                display: inline-block;
+                margin: 0 10px;
+                padding: 10px;
+                min-width: 70px;
+            }
+            
+            .geri-sayim .deger {
+                font-size: 28px;
+                font-weight: bold;
+                color: #fff;
+                display: block;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            
+            .geri-sayim .birim {
+                font-size: 14px;
+                color: #d4af37;
+                font-weight: bold;
+                letter-spacing: 1px;
+                margin-top: 5px;
+            }
+            
+            @media (max-width: 768px) {
+                .geri-sayim .zaman {
+                    margin: 0 5px;
+                    min-width: 60px;
+                }
+                
+                .geri-sayim .deger {
+                    font-size: 22px;
+                }
+                
+                .geri-sayim .birim {
+                    font-size: 12px;
+                }
+                
+                .save-the-date-wrap {
+                    margin: 30px auto;
+                    max-width: 400px;
+                }
+            }
+            
+            /* Section Titles */
+            .section-title-wrap {
+                text-align: center;
+                margin-bottom: 50px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                position: relative;
+                display: inline-block;
+            }
+            
+            .section-title-bottom {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .section-title-line {
+                height: 2px;
+                width: 50px;
+                background: #d4af37;
+                display: inline-block;
+            }
+            
+            .section-title-icon {
+                color: #d4af37;
+                margin: 0 15px;
+            }
+            
+            /* About Section */
+            .about-section {
+                padding: 80px 0;
+            }
+            
+            .about-image {
+                border-radius: 10px;
+                margin-bottom: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                width: 100%;
+            }
+            
+            .about-info-title {
+                margin-bottom: 20px;
+            }
+            
+            .about-tag {
+                background: #d4af37;
+                color: #fff;
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+            }
+            
+            @media (max-width: 768px) {
+                .about-section .col-lg-3 {
+                    margin-bottom: 40px;
+                }
+                
+                .about-image {
+                    max-width: 300px;
+                    margin: 0 auto 20px;
+                    display: block;
+                }
+            }
+            
+            /* Wedding Info Section */
+            .the-wedding-section {
+                padding: 80px 0;
+                background: #f8f9fa;
+            }
+            
+            .section-block {
+                padding: 20px 0;
+            }
+            
+            .section-block h3 {
+                color: #d4af37;
+                margin-bottom: 15px;
+            }
+            
+            iframe {
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            @media (max-width: 768px) {
+                .the-wedding-section .col-lg-4 {
+                    margin-bottom: 40px;
+                }
+                
+                iframe {
+                    height: 300px;
+                }
+            }
+            
+            /* Contact Section */
+            .contact-section {
+                padding: 80px 0;
+            }
+            
+            .social-icon {
+                list-style: none;
+                padding: 0;
+                display: flex;
+            }
+            
+            .social-icon-item {
+                margin-right: 15px;
+            }
+            
+            .social-icon-link {
+                color: #333;
+                font-size: 1.5rem;
+                transition: all 0.3s ease;
+            }
+            
+            .social-icon-link:hover {
+                color: #d4af37;
+            }
+            
+            /* Navbar */
+            .navbar {
+                padding: 20px 0;
+                position: absolute;
+                width: 100%;
+                z-index: 1000;
+            }
+            
+            .navbar-brand {
+                font-size: 1.8rem;
+                color: #fff;
+            }
+            
+            .brand-icon {
+                color: #d4af37;
+                margin: 0 10px;
+            }
+            
+            .nav-link {
+                color: rgba(255, 255, 255, 0.8);
+                margin: 0 10px;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-link:hover {
+                color: #fff;
+            }
+            
+            @media (max-width: 992px) {
+                .navbar-collapse {
+                    background: rgba(0, 0, 0, 0.9);
+                    padding: 20px;
+                    border-radius: 10px;
+                    margin-top: 10px;
+                }
+            }
+            
+            /* Preloader */
+            .preloader {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+            }
+            
+            .spinner-rotate {
+                animation: rotate 2s linear infinite;
+                color: #d4af37;
+                font-size: 3rem;
+            }
+            
+            @keyframes rotate {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            
+            /* Footer */
+            .site-footer {
+                padding: 30px 0;
+                background: #f8f9fa;
+                text-align: center;
+            }
+        </style>
     </head>
     
     <body>
@@ -40,16 +351,13 @@ Free Bootstrap 5 HTML Template
         <section class="preloader">
             <div class="spinner">
                 <span class="spinner-rotate">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                    </svg>
+                    <i class="bi bi-heart-fill"></i>
                 </span>    
             </div>
         </section>
 
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -63,28 +371,26 @@ Free Bootstrap 5 HTML Template
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_1">Ana sayfa</a>
+                            <a class="nav-link" href="#section_1">Ana sayfa</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_2">Hikayemiz</a>
+                            <a class="nav-link" href="#section_2">Hikayemiz</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_3">Tarih-Konum</a>
+                            <a class="nav-link" href="#section_3">Tarih-Konum</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_7">Bize ulaşın</a>
+                            <a class="nav-link" href="#section_7">Bize ulaşın</a>
                         </li>
                     </ul>
                 </div>
-
             </div>
         </nav>
 
         <main>
-
             <section class="hero-section d-flex" id="section_1">
                 <div class="hero-container container d-flex flex-column justify-content-end">
                     <div class="row h-100">
@@ -92,18 +398,38 @@ Free Bootstrap 5 HTML Template
                         <div class="col-lg-6 col-12 my-auto">
                             <h2>👋 Davetlisiniz</h2>
 
-                            <h1 class="text-black hero-title mb-4">Nişanlanıyoruz</h1>
+                            <h1 class="hero-title amatic-font mb-4">Nişanlanıyoruz</h1>
 
                             <a href="#section_2" class="custom-link custom-btn btn mt-4">Bilgiler</a>
                         </div>
 
                         <div class="col-lg-3 col-12 save-the-date-wrap mt-auto ms-lg-auto">
                             <div class="save-the-date-thumb">
-                                <h4 class="save-the-date-title">NİŞAN TARİHİ</h4>
+                                <h4 class="save-the-date-title amatic-font">NİŞAN TARİHİ</h4>
 
-                                <div class="save-the-date-body">
+                                <div class="save-the-date-body amatic-font">
                                     <p> 04 Ekim 2025 
                                     <br>CUMARTESİ</p>
+                                </div>
+                                
+                                <!-- Geri Sayım Eklentisi Buraya -->
+                                <div class="geri-sayim">
+                                    <div class="zaman">
+                                        <span id="gun" class="deger">0</span>
+                                        <div class="birim">Gün</div>
+                                    </div>
+                                    <div class="zaman">
+                                        <span id="saat" class="deger">0</span>
+                                        <div class="birim">Saat</div>
+                                    </div>
+                                    <div class="zaman">
+                                        <span id="dakika" class="deger">0</span>
+                                        <div class="birim">Dakika</div>
+                                    </div>
+                                    <div class="zaman">
+                                        <span id="saniye" class="deger">0</span>
+                                        <div class="birim">Saniye</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +445,7 @@ Free Bootstrap 5 HTML Template
 
                         <div class="col-lg-12 col-12">
                             <div class="section-title-wrap mb-5">
-                                <h2 class="section-title">Aşk Hikayesi</h2>
+                                <h2 class="section-title amatic-font">Hikayemiz</h2>
 
                                 <div class="section-title-bottom">
                                     <span class="section-title-line"></span>
@@ -140,7 +466,7 @@ Free Bootstrap 5 HTML Template
                                 <div class="about-info-title d-flex align-items-center my-3">
                                     <h4>Helin</h4>
 
-                                    <span class="about-tag ms-2">GELİN</Nav></span>
+                                    <span class="about-tag ms-2">❤︎</span>
                                 </div>
 
                                 <p>Sevgili ailemiz ve dostlarımız,</p>
@@ -174,7 +500,7 @@ Free Bootstrap 5 HTML Template
                                 <div class="about-info-title d-flex align-items-center my-3">
                                     <h4>Barış</h4>
 
-                                    <span class="about-tag ms-2">DAMAT</span>
+                                    <span class="about-tag ms-2">❤︎</span>
                                 </div>
 
                                 <p>Merhaba,</p>
@@ -207,7 +533,7 @@ Free Bootstrap 5 HTML Template
 
                         <div class="col-lg-12 col-12">
                             <div class="section-title-wrap mb-5">
-                                <h2 class="section-title">ETKİNLİK BİLGİLERİ</h2>
+                                <h2 class="section-title amatic-font">ETKİNLİK BİLGİLERİ</h2>
 
                                 <div class="section-title-bottom">
                                     <span class="section-title-line"></span>
@@ -219,7 +545,7 @@ Free Bootstrap 5 HTML Template
 
                         <div class="col-lg-4 col-md-6 col-12 d-flex flex-column mb-4 mb-lg-0 mb-md-0">
                             <div class="image-hover-thumb">
-                                <img src="images/decorated-table-setting-wedding-celebration.jpg" class="img-fluid" alt="">
+                                  <img src="images/decorated-table-setting-wedding-celebration.jpg" class="img-fluid" alt="">
                             </div>
 
                             <div class="section-block">
@@ -238,7 +564,7 @@ Free Bootstrap 5 HTML Template
                         </div>
 
                         <div class="col-lg-4 col-md-6 col-12 d-flex flex-column">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.252220360113!2d40.1701951!3d37.9712428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4074e1c63d361249%3A0x190d3884be0ad359!2zTcSwTEVOQSBEQVZFVCBFVsSwICYgT1JHQU7EsFpBU1lPTg!5e0!3m2!1str!2str!4v1757858507898!5m2!1str!2str" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.252220360113!2d40.1701951!3d37.9712428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4074e1c63d361249%3A0x190d3884be0ad359!2zTcSwTEVOQSBEQVZFVCBFVsSwICYgT1JHQU7EsFpBU1lPTg!5e0!3m2!1str!2str!4v1757858507898!5m2!1str!2str" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             <div class="section-block">
                                 <h3 class="my-3">Konum</h3>
 
@@ -262,7 +588,7 @@ Free Bootstrap 5 HTML Template
 
                         <div class="col-lg-12 col-12">
                             <div class="section-title-wrap mb-5">
-                                <h2 class="section-title">İletişime geçin</h2>
+                                <h2 class="section-title amatic-font">İletişime geçin</h2>
 
                                 <div class="section-title-bottom">
                                     <span class="section-title-line"></span>
@@ -321,7 +647,7 @@ Free Bootstrap 5 HTML Template
                         <a href="index.html" class="navbar-brand mx-auto mx-lg-0">
                             <span>Barış</span>
                             <i class="bi-heart brand-icon"></i>
-                            <span>Helin</span>,
+                            <span>Helin</span>
                         </a>
                     </div>
 
@@ -330,14 +656,57 @@ Free Bootstrap 5 HTML Template
         </footer>
 
         <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/click-scroll.js"></script>
-        <script src="js/jquery.magnific-popup.min.js"></script>
-        <script src="js/magnific-popup-options.js"></script>
-        <script src="js/custom.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
+        <script>
+            // Preloader
+            $(window).on('load', function() {
+                $('.preloader').fadeOut('slow');
+            });
+            
+            // Smooth Scrolling
+            $('a[href*="#"]').on('click', function(e) {
+                e.preventDefault();
+                
+                $('html, body').animate(
+                    {
+                        scrollTop: $($(this).attr('href')).offset().top - 70,
+                    },
+                    500,
+                    'linear'
+                );
+            });
+            
+            // Geri Sayım
+            var hedefTarih = new Date(2025, 9, 4, 18, 0, 0);
+            
+            function guncelleGeriSayim() {
+                var simdi = new Date();
+                var fark = hedefTarih - simdi;
+                
+                if (fark <= 0) {
+                    document.getElementById("gun").textContent = '0';
+                    document.getElementById("saat").textContent = '0';
+                    document.getElementById("dakika").textContent = '0';
+                    document.getElementById("saniye").textContent = '0';
+                    return;
+                }
+                
+                var gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+                var saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+                var saniye = Math.floor((fark % (1000 * 60)) / 1000);
+                
+                document.getElementById("gun").textContent = gun;
+                document.getElementById("saat").textContent = saat;
+                document.getElementById("dakika").textContent = dakika;
+                document.getElementById("saniye").textContent = saniye;
+            }
+            
+            setInterval(guncelleGeriSayim, 1000);
+            guncelleGeriSayim();
+        </script>
     </body>
 </html>
 
